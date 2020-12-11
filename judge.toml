@@ -1,0 +1,7 @@
+[jobs.c0]
+
+image = { source = "dockerfile", path = ".", tag = "c0" }
+
+run = [
+  "java src.Main $input -o $asm",
+]
