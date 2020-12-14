@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9f7f97fe-747f-4d35-bded-de60fc5c54ec" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/Analyser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/Ast.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/Function.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/Functionarrary.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/Order.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/Pair.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/ReadFile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/Serror.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/Token$tokentype.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/Token.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/Tokenizer$DFA.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/Tokenizer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/Variable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/as_exprAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/assign_exprAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/block_stmtAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/break_stmtAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/call_exprAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/call_param_listAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/conditionAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/const_decl_stmtAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/constant.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/constantarray.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/continue_stmtAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/decl_stmtAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/empty_stmtAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/exprAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/expr_stmtAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/functionAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/function_paramAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/function_param_listAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/grammar.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/group_exprAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/ident_exprAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/if_stmtAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/itemAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/let_decl_stmtAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/literal_exprAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/multiplicative_exprAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/negate_exprAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/operator_exprAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/primary_exprAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/programAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/return_stmtAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/startcode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/stmtAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/test.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/var.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/while_stmtAst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/c0-java/write.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Matrix-Lee" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1kNHccd0kVTqvCOHZ6YV9Bro04K" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="c0-java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReadFile" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ReadFile" />
+      <module name="c0-java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ieee" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ieee" />
+      <module name="c0-java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.ieee" />
+        <item itemvalue="Application.ReadFile" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9f7f97fe-747f-4d35-bded-de60fc5c54ec" name="Default Changelist" comment="" />
+      <created>1605534209848</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605534209848</updated>
+      <workItem from="1605534217930" duration="65000" />
+      <workItem from="1605534435751" duration="571000" />
+      <workItem from="1605572450556" duration="2082000" />
+      <workItem from="1605578788247" duration="27000" />
+      <workItem from="1605579048675" duration="75000" />
+      <workItem from="1605580693777" duration="55000" />
+      <workItem from="1605692379451" duration="59000" />
+      <workItem from="1605692465993" duration="89000" />
+      <workItem from="1605692624104" duration="415000" />
+      <workItem from="1605693388804" duration="5522000" />
+      <workItem from="1605707712380" duration="4929000" />
+      <workItem from="1605790658430" duration="53000" />
+      <workItem from="1605796712200" duration="35000" />
+      <workItem from="1605797214448" duration="21000" />
+      <workItem from="1605921994744" duration="12767000" />
+      <workItem from="1605948596395" duration="11453000" />
+      <workItem from="1606040331476" duration="3029000" />
+      <workItem from="1606114160993" duration="600000" />
+      <workItem from="1606117642319" duration="7577000" />
+      <workItem from="1606285301936" duration="30000" />
+      <workItem from="1606292055424" duration="1935000" />
+      <workItem from="1607128878090" duration="34668000" />
+      <workItem from="1607221018780" duration="57978000" />
+      <workItem from="1607399484088" duration="5586000" />
+      <workItem from="1607421037179" duration="46613000" />
+      <workItem from="1607614918921" duration="1346000" />
+      <workItem from="1607616908841" duration="2079000" />
+      <workItem from="1607650662774" duration="5984000" />
+      <workItem from="1607680303226" duration="2788000" />
+      <workItem from="1607686365434" duration="277000" />
+      <workItem from="1607864354526" duration="4295000" />
+      <workItem from="1607870008531" duration="2370000" />
+      <workItem from="1607918097097" duration="3476000" />
+      <workItem from="1607926878614" duration="611000" />
+      <workItem from="1607940458168" duration="2184000" />
+      <workItem from="1607944450171" duration="4198000" />
+      <workItem from="1607951023337" duration="2345000" />
+    </task>
+    <task id="LOCAL-00001" summary="Matrix.L">
+      <created>1606026394954</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1606026394954</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Matrix.L">
+      <created>1607951207626</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1607951207626</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Matrix.L">
+      <created>1607951225081</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1607951225081</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Matrix.L" />
+    <option name="LAST_COMMIT_MESSAGE" value="Matrix.L" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="71" key="#Project_Structure" timestamp="1605572503738">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="71" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1605572503738" />
+    <state x="507" y="202" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607250231263">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="507" y="202" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1607250231263" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607237932481">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1607237932481" />
+    <state x="314" y="0" key="CommitChangelistDialog2" timestamp="1607951222318">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="314" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1607951222318" />
+    <state width="710" height="618" key="DebuggerActiveHint" timestamp="1607942862628">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="710" height="618" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1607942862628" />
+    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1607220826323">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1607220826323" />
+    <state x="398" y="315" width="1051" height="138" key="GridCell.Tab.-1.bottom" timestamp="1606122970890">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="398" y="315" width="1051" height="138" key="GridCell.Tab.-1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606122970890" />
+    <state x="398" y="315" width="1051" height="138" key="GridCell.Tab.-1.center" timestamp="1606122970890">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="398" y="315" width="1051" height="138" key="GridCell.Tab.-1.center/0.0.1536.824@0.0.1536.824" timestamp="1606122970890" />
+    <state x="398" y="315" width="1051" height="138" key="GridCell.Tab.-1.left" timestamp="1606122970889">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="398" y="315" width="1051" height="138" key="GridCell.Tab.-1.left/0.0.1536.824@0.0.1536.824" timestamp="1606122970889" />
+    <state x="398" y="315" width="1051" height="138" key="GridCell.Tab.-1.right" timestamp="1606122970890">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="398" y="315" width="1051" height="138" key="GridCell.Tab.-1.right/0.0.1536.824@0.0.1536.824" timestamp="1606122970890" />
+    <state width="1493" height="195" key="GridCell.Tab.0.bottom" timestamp="1607953374346">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="195" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607953374346" />
+    <state width="1493" height="195" key="GridCell.Tab.0.center" timestamp="1607953374346">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="195" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1607953374346" />
+    <state width="1493" height="195" key="GridCell.Tab.0.left" timestamp="1607953374346">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="195" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1607953374346" />
+    <state width="1493" height="195" key="GridCell.Tab.0.right" timestamp="1607953374346">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="195" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1607953374346" />
+    <state x="174" y="542" width="1493" height="290" key="GridCell.Tab.1.bottom" timestamp="1607616270616">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="174" y="542" width="1493" height="290" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607616270616" />
+    <state x="174" y="542" width="1493" height="290" key="GridCell.Tab.1.center" timestamp="1607616270615">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="174" y="542" width="1493" height="290" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1607616270615" />
+    <state x="174" y="542" width="1493" height="290" key="GridCell.Tab.1.left" timestamp="1607616270615">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="174" y="542" width="1493" height="290" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1607616270615" />
+    <state x="174" y="542" width="1493" height="290" key="GridCell.Tab.1.right" timestamp="1607616270615">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="174" y="542" width="1493" height="290" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1607616270615" />
+    <state x="174" y="542" width="1051" height="138" key="GridCell.Tab.2.bottom" timestamp="1606122956932">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="174" y="542" width="1051" height="138" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606122956932" />
+    <state x="174" y="542" width="1051" height="138" key="GridCell.Tab.2.center" timestamp="1606122956931">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="174" y="542" width="1051" height="138" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1606122956931" />
+    <state x="174" y="542" width="1051" height="138" key="GridCell.Tab.2.left" timestamp="1606122956930">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="174" y="542" width="1051" height="138" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1606122956930" />
+    <state x="174" y="542" width="1051" height="138" key="GridCell.Tab.2.right" timestamp="1606122956931">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="174" y="542" width="1051" height="138" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1606122956931" />
+    <state x="270" y="0" key="SettingsEditor" timestamp="1607946047691">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="270" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1607946047691" />
+    <state x="361" y="141" key="Vcs.Push.Dialog.v2" timestamp="1606026410225">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="141" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1606026410225" />
+    <state x="449" y="237" key="com.intellij.ide.util.TipDialog" timestamp="1605796711091">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="449" y="237" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1605796711091" />
+    <state x="331" y="539" width="1065" height="203" key="dock-window-1" timestamp="1606123455697">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="331" y="539" width="1065" height="203" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1606123455697" />
+    <state x="174" y="542" width="1065" height="203" key="dock-window-2" timestamp="1606123455697">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="174" y="542" width="1065" height="203" key="dock-window-2/0.0.1536.824@0.0.1536.824" timestamp="1606123455697" />
+    <state x="398" y="315" width="1065" height="203" key="dock-window-3" timestamp="1606123455697">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="398" y="315" width="1065" height="203" key="dock-window-3/0.0.1536.824@0.0.1536.824" timestamp="1606123455697" />
+    <state x="0" y="0" width="603" height="824" key="find.popup" timestamp="1607128900086">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="0" y="0" width="603" height="824" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1607128900086" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1607502772126">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1607502772126" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1607516117491">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1607516117491" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ReadFile.java</url>
+          <line>10</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Analyser/programAst.java</url>
+          <line>421</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Analyser/programAst.java</url>
+          <line>1219</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="Analyser.as_exprAst" memberName="l_expr" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="lines" />
+        <watch expression="result.get(6)" />
+        <watch expression="result.get(22)" />
+        <watch expression="pos" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/c0_java$Main.ic" NAME="Main Coverage Results" MODIFIED="1607655201350" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>
