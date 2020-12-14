@@ -6,8 +6,8 @@ import Analyser.*;
 
 public class Main {
     public static void main(String[] args) {
-        //String filepath = args[0];
-        String filepath = "src/test.txt";
+        String filepath = args[0];
+        //String filepath = "src/test.txt";
         File directory = new File(filepath);
         String filename = directory.getAbsolutePath();
         FileReader fp;
