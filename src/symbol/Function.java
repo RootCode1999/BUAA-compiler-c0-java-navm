@@ -63,7 +63,7 @@ public class Function {
     public Variable get_variable(String name, int level) {
         int len = variables.size();
         for (int i = len - 1; i >= 0; i--) {
-            if (variables.get(i).name.equals(name) && variables.get(i).level >= level)
+            if (variables.get(i).name.equals(name) && variables.get(i).level <= level)
                 return variables.get(i);
         }
         return null;
@@ -72,7 +72,7 @@ public class Function {
     public boolean is_const(String name, int level) {
         int len = variables.size();
         for (int i = len - 1; i >= 0; i--) {
-            if (variables.get(i).name.equals(name) && variables.get(i).level >= level)
+            if (variables.get(i).name.equals(name) && variables.get(i).level <= level)
                 return variables.get(i).is_const;
         }
         return false;
@@ -81,7 +81,7 @@ public class Function {
     public int get_index(String name, int level) {
         int len = variables.size();
         for (int i = len - 1; i >= 0; i--) {
-            if (variables.get(i).name.equals(name) && variables.get(i).level >= level)
+            if (variables.get(i).name.equals(name) && variables.get(i).level <= level)
                 return i;
         }
         return -1;

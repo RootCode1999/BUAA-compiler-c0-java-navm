@@ -28,4 +28,12 @@ public class Variable {
     public String get_type(){return type;}
 
     public void set_type(String type){this.type=type;}
+
+    public boolean judge_level(int level){
+        if(level == 0)
+            return true;
+        if (level<this.level)
+            return false;
+        return true;
+    }
 }

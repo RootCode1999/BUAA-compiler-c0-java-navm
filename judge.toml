@@ -3,5 +3,6 @@
 image = { source = "dockerfile", path = ".", tag = "c0" }
 
 run = [
-  "java src.Main $input -o $asm",
-]
+    "cd src",
+  "java Main $input -o $asm",
+].

@@ -132,12 +132,17 @@ public class Tokenizer {
 
             // 10
             else if (current_state == DFA.DECIMAL) {
+                Token.tokentype type = Token.tokentype.INT;
                 if (currentChar == null) {
                     System.exit(1);
                 }
                 char ch = currentChar.get();
                 if (Character.isDigit(ch))
                     bf.append(ch);
+                else if(ch == '.'){
+                    bf.append(ch);
+                    type = Token.tokentype.DOUBLE;
+                }
                 else {
                     if(Character.isAlphabetic(ch))
                         System.exit(1);
@@ -146,7 +151,7 @@ public class Tokenizer {
                     if (tokenvalue.length() >= max_int.length() || tokenvalue.compareTo(max_int) > 0) {
                         System.exit(1);
                     }
-                    return Optional.of(new Token(Token.tokentype.INT, bf.toString(), start_token_pos, currentpos()));
+                    return Optional.of(new Token(type, bf.toString(), start_token_pos, currentpos()));
                 }
             }
 
