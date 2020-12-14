@@ -20,21 +20,9 @@ public class write {
             f.createNewFile();
             DataOutputStream out = new DataOutputStream(new FileOutputStream(outputFile, true));
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
-        }
-    }
-
-    public void writeMagicAndVersion(DataOutputStream out){
-        try{
-            int magic = 0x72303b3e;
-            int version = 1;
-            int count = code_stratcode.variables.size();
-            out.write(intToBytes(magic));
-            out.write(intToBytes(version));
-        } catch (IOException e){
-            e.printStackTrace();
         }
     }
 
