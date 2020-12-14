@@ -4,9 +4,9 @@ public class Analyser {
     public ArrayList<Token> tokens = new ArrayList<Token>();
     public int offset = 0;
     public Pair<Integer, Integer> currentpos;
-    public ArrayList<var> globalVariable_arry = new ArrayList<>();
-    public ArrayList<var> localVariable_arry = new ArrayList<>();
-    public ArrayList<var> function_arry = new ArrayList<>();
+    public ArrayList<varia> globalVariable_arry = new ArrayList<>();
+    public ArrayList<varia> localVariable_arry = new ArrayList<>();
+    public ArrayList<varia> function_arry = new ArrayList<>();
     public int count_gv = 0;
     public int count_lv = 0;
     public int count_fun = 0;
@@ -463,7 +463,7 @@ public class Analyser {
             if (operator_expr == null)
                 System.exit(1);
             Token tk6 = nextToken();
-            var this_variabale = new var(tk2.getValue(), tk4.getValue(), false);
+            varia this_variabale = new varia(tk2.getValue(), tk4.getValue(), false);
             if (function_arry.size() == 0)
                 globalVariable_arry.add(this_variabale);
             else
@@ -475,7 +475,7 @@ public class Analyser {
                 && tk3.getType() == Token.tokentype.COLON
                 && (tk4.getType() == Token.tokentype.INT || tk4.getType() == Token.tokentype.DOUBLE)
                 && tk5.getType() == Token.tokentype.SEMICOLON) {
-            var this_variabale = new var(tk2.getValue(), tk4.getValue(), false);
+            varia this_variabale = new varia(tk2.getValue(), tk4.getValue(), false);
             if (function_arry.size() == 0)
                 globalVariable_arry.add(this_variabale);
             else
@@ -500,7 +500,7 @@ public class Analyser {
             operator_exprAst operator_expr = operator_expr_analyse();
             if (operator_expr == null)
                 System.exit(1);
-            var this_variabale = new var(tk2.getValue(), tk4.getValue(), true);
+            varia this_variabale = new varia(tk2.getValue(), tk4.getValue(), true);
             if (function_arry.size() == 0)
                 globalVariable_arry.add(this_variabale);
             else
@@ -745,7 +745,7 @@ public class Analyser {
                 Token tk6 = nextToken();
                 if (tk5.getType() == Token.tokentype.ARROW && (tk6.getType() == Token.tokentype.INT
                         || tk6.getType() == Token.tokentype.DOUBLE || tk6.getType() == Token.tokentype.VOID)) {
-                    var func = new var(tk2.getValue(),tk6.getValue(),true);
+                    varia func = new varia(tk2.getValue(),tk6.getValue(),true);
                     this.function_arry.add(func);
                     block_stmtAst block_stmt = block_stmt_analyse();
                     if (block_stmt == null)
@@ -761,7 +761,7 @@ public class Analyser {
                 Token tk6 = nextToken();
                 if (tk5.getType() == Token.tokentype.ARROW && (tk6.getType() == Token.tokentype.INT
                         || tk6.getType() == Token.tokentype.DOUBLE || tk6.getType() == Token.tokentype.VOID)) {
-                    var func = new var(tk2.getValue(),tk5.getValue(),true);
+                    varia func = new varia(tk2.getValue(),tk5.getValue(),true);
                     this.function_arry.add(func);
                     block_stmtAst block_stmt = block_stmt_analyse();
                     if (block_stmt == null)
@@ -827,14 +827,14 @@ public class Analyser {
     public boolean is_variabale(String name) {
         if (function_arry.size() != 0) {
             for (int i = localVariable_arry.size() - 1; i >= 0; i--) {
-                var this_one = localVariable_arry.get(i);
+                varia this_one = localVariable_arry.get(i);
                 if (this_one.name.equals(name))
                     if(!this_one.is_const)
                         return true;
             }
         }
         for (int i = 0; i < globalVariable_arry.size(); i++) {
-            var this_one = globalVariable_arry.get(i);
+            varia this_one = globalVariable_arry.get(i);
             if (this_one.name.equals(name))
                 if(!this_one.is_const)
                     return true;
@@ -847,7 +847,7 @@ public class Analyser {
         if(function_arry.size() == 0)
             return false;
         for (int i = function_arry.size() - 1; i >= 0; i--) {
-            var this_one = function_arry.get(i);
+            varia this_one = function_arry.get(i);
             if (this_one.name.equals(name))
                 return true;
         }

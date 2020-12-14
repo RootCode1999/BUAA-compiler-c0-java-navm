@@ -1,13 +1,12 @@
-import java.io.FileReader;
 import java.io.*;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         String filename = args[0];
-        //String filepath = "src/test.txt";
-        //File directory = new File(filepath);
-        //String filename = directory.getAbsolutePath();
+        // String filename = "test.txt";
+        // File directory = new File(filepath);
+        // String filename = directory.getAbsolutePath();
         FileReader fp;
         Tokenizer tokenizer;
         try {
