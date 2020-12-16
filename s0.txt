@@ -1,22 +1,100 @@
 .globals:
-0    static: "=============
-| #  /\ + " |
-|  /:""'\\^||
-|/|\?"'/\  !|
-|\r \ #s    |
-|\a /\  /\\v|
-============="
-1    static: "putstr"
-2    static: "main"
-3    static: "_start"
+0    static: "putint"
+1    static: "putchar"
+2    static: "putchar"
+3    static: "putchar"
+4    static: "putchar"
+5    static: "putln"
+6    static: "move"
+7    static: "hanoi"
+8    static: "main"
+9    static: "_start"
 
 .start:
 0    stackalloc 0  
-1    call 1  
+1    call 3  
 
-1    .functions:main
+1    .functions:move
 0    stackalloc(0)
-1    push(0)
-2    callname(1)
-3    ret 
+1    arga(0)
+2    load.64 
+3    callname(0)
+4    stackalloc(0)
+5    push(32)
+6    callname(1)
+7    stackalloc(0)
+8    arga(1)
+9    load.64 
+10   callname(2)
+11   stackalloc(0)
+12   push(32)
+13   callname(3)
+14   stackalloc(0)
+15   arga(2)
+16   load.64 
+17   callname(4)
+18   stackalloc(0)
+19   callname(5)
+20   ret 
+
+2    .functions:hanoi
+0    arga(0)
+1    load.64 
+2    push(1)
+3    cmp.i 
+4    not 
+5    br.true(1)
+6    br(9)
+7    stackalloc(0)
+8    arga(0)
+9    load.64 
+10   arga(1)
+11   load.64 
+12   arga(3)
+13   load.64 
+14   call(1)
+15   br(33)
+16   stackalloc(0)
+17   arga(0)
+18   load.64 
+19   push(1)
+20   sub.i 
+21   arga(1)
+22   load.64 
+23   arga(3)
+24   load.64 
+25   arga(2)
+26   load.64 
+27   call(2)
+28   stackalloc(0)
+29   arga(0)
+30   load.64 
+31   arga(1)
+32   load.64 
+33   arga(3)
+34   load.64 
+35   call(1)
+36   stackalloc(0)
+37   arga(0)
+38   load.64 
+39   push(1)
+40   sub.i 
+41   arga(2)
+42   load.64 
+43   arga(1)
+44   load.64 
+45   arga(3)
+46   load.64 
+47   call(2)
+48   br(0)
+49   ret 
+
+3    .functions:main
+0    stackalloc(0)
+1    push(6)
+2    push(65)
+3    push(66)
+4    push(67)
+5    call(2)
+6    ret 
 

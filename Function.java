@@ -106,7 +106,7 @@ public class Function {
         int len = parameters.size();
         for (int i = len - 1; i >= 0; i--) {
             if (parameters.get(i).name.equals(name))
-                return i+1;
+                return i;
         }
         return -1;
     }

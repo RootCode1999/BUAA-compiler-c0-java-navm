@@ -53,7 +53,7 @@ class assign_exprAst extends Ast {
                 System.exit(1);
             loadOrder = new Order("arga", level);
             loadOrder.addOper((long) index);
-            Variable current_var = currentFunction.get_variable(l_expr, level);
+            Variable current_var = currentFunction.get_parameter(l_expr);
             if(current_var == null)
                 System.exit(1);
             res1 = currentFunction.get_parameter(l_expr).get_type();
@@ -976,15 +976,19 @@ class if_stmtAst extends Ast {
         String res = " ";
         res = process(level, condition_if, block_stmt_if);
         // else if()
-        int len = condition_else_if.size();
-        if (len != 0)
-            for (int i = 0; i < len; i++) {
-                String temp = " ";
-                temp = process(level, condition_else_if.get(i), block_stmt_else_if.get(i));
-                if (!temp.equals(res))
-                    System.exit(1);
-                res = temp;
-            }
+        if(condition_else_if == null)
+            ;
+        else{
+            int len = condition_else_if.size();
+            if (len != 0)
+                for (int i = 0; i < len; i++) {
+                    String temp = " ";
+                    temp = process(level, condition_else_if.get(i), block_stmt_else_if.get(i));
+                    if (!temp.equals(res))
+                        System.exit(1);
+                    res = temp;
+                }
+        }
         // else
         if (block_stmt_else != null) {
             String temp = " ";
@@ -999,7 +1003,7 @@ class if_stmtAst extends Ast {
         int len_jump_in = jump_in.size();
         int len_jump_out = jump_out.size();
         int len_temp = Math.min(len_jump_in, len_jump_out);
-        for (int i = 0; i < len_temp - 1; i++) {
+        for (int i = 0; i < len_temp; i++) {
             int out = jump_out.get(i);
             int in = jump_in.get(i);
             currentFunction.orders.get(in).addOper((long) (out - in));
@@ -1122,6 +1126,8 @@ class return_stmtAst extends Ast {
             res = expr.generate(level);
             Order store = new Order("store.64", level);
             currentFunction.addorders(store);
+            Order ret = new Order("ret", level);
+            currentFunction.addorders(ret);
         }
         return res;
     }
@@ -1196,7 +1202,7 @@ class function_paramAst extends Ast {
 // function_param_list -> function_param (',' function_param)*
 class function_param_listAst extends Ast {
     function_paramAst function_param_front;
-    ArrayList<function_paramAst> function_params;
+    ArrayList<function_paramAst> function_params = new ArrayList<>();
 
     public function_param_listAst(function_paramAst function_param_front) {
         this.function_param_front = function_param_front;
@@ -1239,6 +1245,7 @@ class functionAst extends Ast {
     }
 
     public String generate(int level) {
+
         String res = "void";
         Function this_func = new Function(ident, ty);
         constant con = new constant(this.ty,this.ident);
@@ -1248,12 +1255,22 @@ class functionAst extends Ast {
         Functionarrary.getFunctionTable().functions.add(this_func);
         if (function_param_list != null)
             res = function_param_list.generate(level);
+        if(!this.ty.equals("void")){
+            Function current_func = Functionarrary.getFunctionTable().getCurrentFuction();
+            Variable temp = new Variable(this.ty,"return",false,false,level);
+            current_func.parameters.add(temp);
+        }
         res = block_stmt.generate(level);
         Variable func = new Variable(this.ty,this.ident,true,true,0);
         func.setfunc_true();
         startcode.getStartCodeTable().variables.add(func);
-        Order ret = new Order("ret",level);
-        Functionarrary.getFunctionTable().getCurrentFuction().orders.add(ret);
+        Function current_fun = Functionarrary.getFunctionTable().getCurrentFuction();
+        ArrayList<Order> func_order = current_fun.orders;
+        int len = func_order.size();
+        if(len>0 && !func_order.get(len-1).getOpcode().equals("ret")){
+            Order ret = new Order("ret",level);
+            Functionarrary.getFunctionTable().getCurrentFuction().orders.add(ret);
+        }
         if(!res.equals(this.ty))
             System.exit(1);
         res = this.ty;

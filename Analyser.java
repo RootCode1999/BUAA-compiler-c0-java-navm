@@ -7,6 +7,7 @@ public class Analyser {
     public ArrayList<varia> globalVariable_arry = new ArrayList<>();
     public ArrayList<varia> localVariable_arry = new ArrayList<>();
     public ArrayList<varia> function_arry = new ArrayList<>();
+    public ArrayList<varia> function_var = new ArrayList<>();
     public int count_gv = 0;
     public int count_lv = 0;
     public int count_fun = 0;
@@ -158,12 +159,9 @@ public class Analyser {
                 oper = "<=";
             else if (relational_operator.getType() == Token.tokentype.GE)
                 oper = ">=";
-            else if (relational_operator.getType() == Token.tokentype.R_PAREN){
-                return new conditionAst(operator_exprl);
-            }
             else {
-                System.out.println("condition");
-                System.exit(1);
+                unreadToken();
+                return new conditionAst(operator_exprl);
             }
             operator_exprAst operator_exprr;
             operator_exprr = operator_expr_analyse();
@@ -649,7 +647,7 @@ public class Analyser {
             unreadToken();
         }
         Token tk4 = nextToken();
-        if (tk3.getType() == Token.tokentype.ELSE_KW) {
+        if (tk4.getType() == Token.tokentype.ELSE_KW) {
             block_stmt_else = block_stmt_analyse();
             if (block_stmt_else == null)
                 System.exit(1);
@@ -764,6 +762,8 @@ public class Analyser {
             Token tk4 = nextToken();
             if (tk2.getType() == Token.tokentype.IDENT && tk3.getType() == Token.tokentype.SEMICOLON
                     && (tk4.getType() == Token.tokentype.INT || tk4.getType() == Token.tokentype.DOUBLE)) {
+                varia var_new = new varia(tk2.getValue(),tk4.getValue(),false);
+                function_var.add(var_new);
                 return new function_paramAst("const", tk2.getValue(), tk4.getValue());
             }
         } else if (tk1.getType() == Token.tokentype.IDENT) {
@@ -771,6 +771,8 @@ public class Analyser {
             Token tk3 = nextToken();
             if (tk2.getType() == Token.tokentype.COLON
                     && (tk3.getType() == Token.tokentype.INT || tk3.getType() == Token.tokentype.DOUBLE)) {
+                varia var_new = new varia(tk1.getValue(),tk3.getValue(),false);
+                function_var.add(var_new);
                 return new function_paramAst(tk1.getValue(), tk3.getValue());
             }
         }
@@ -826,6 +828,7 @@ public class Analyser {
                     block_stmtAst block_stmt = block_stmt_analyse();
                     if (block_stmt == null)
                         System.exit(1);
+                    function_var = new ArrayList<varia>();
                     return new functionAst(tk2.getValue(), tk6.getValue(), block_stmt);
                 }
             } else {
@@ -843,11 +846,13 @@ public class Analyser {
                     block_stmtAst block_stmt = block_stmt_analyse();
                     if (block_stmt == null)
                         System.exit(1);
+                    function_var = new ArrayList<varia>();
                     return new functionAst(tk2.getValue(), function_param_list, tk6.getValue(), block_stmt);
                 }
             }
         }
         System.exit(1);
+        function_var = new ArrayList<varia>();
         return null;
     }
 
@@ -914,6 +919,12 @@ public class Analyser {
         }
         for (int i = 0; i < globalVariable_arry.size(); i++) {
             varia this_one = globalVariable_arry.get(i);
+            if (this_one.name.equals(name))
+                if(!this_one.is_const)
+                    return true;
+        }
+        for (int i = 0; i < function_var.size(); i++) {
+            varia this_one = function_var.get(i);
             if (this_one.name.equals(name))
                 if(!this_one.is_const)
                     return true;

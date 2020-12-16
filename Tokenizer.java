@@ -158,7 +158,7 @@ public class Tokenizer {
                     System.exit(1);
                 }
                 char ch = currentChar.get();
-                if (Character.isDigit(ch) || Character.isAlphabetic(ch))
+                if (Character.isDigit(ch) || Character.isAlphabetic(ch) || ch=='_')
                     bf.append(ch);
                 else {
                     unreadlast();
