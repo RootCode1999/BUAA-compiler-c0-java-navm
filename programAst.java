@@ -795,7 +795,6 @@ class let_decl_stmtAst extends Ast {
                     System.exit(1);
                 Order store = new Order("store.64", level);
                 currentFunction.addorders(store);
-                currentFunction.variables.add(new_variable);
             } else if (level == 0) {
                 int index = startcode.getStartCodeTable().get_index(this.ty);
                 Order globa = new Order("globa", level);
