@@ -104,11 +104,13 @@ public class Tokenizer {
 
             else if(current_state == DFA.STRING){
                 char ch = currentChar.get();
-                if (ch != '\"') {
+                if (ch != ')') {
                     bf.append(ch);
                 } else {
-                    String tokenValue = bf.toString();
-                    return Optional.of(new Token(Token.tokentype.STRING, bf.toString(), start_token_pos, currentpos()));
+                    unreadlast();
+                    int len = bf.length();
+                    String tokenValue = bf.substring(0,len-1);
+                    return Optional.of(new Token(Token.tokentype.STRING, tokenValue, start_token_pos, currentpos()));
                 }
             }
 

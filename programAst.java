@@ -583,7 +583,34 @@ class literal_exprAst extends Ast {
                 startcode.getStartCodeTable().orders.add(push);
         } else if (res.equals("string")) {
             int len = startcode.getStartCodeTable().variables.size();
-            Variable new_constant = new Variable(res, this.LITERAL, true, false, 0);
+            String help_string = "";
+            int str_len = this.LITERAL.length();
+            for(int p = 0;p<str_len;p++){
+                char ch = this.LITERAL.charAt(p);
+                if(ch == '\\'){
+                    char temp = this.LITERAL.charAt(p+1);
+                    if(temp == 'b')
+                        help_string += '\b';
+                    else if(temp == 'f')
+                        help_string += '\f';
+                    else if(temp == 'r')
+                        help_string += '\r';
+                    else if(temp == 'n')
+                        help_string += '\n';
+                    else if(temp == 't')
+                        help_string += '\t';
+                    else if(temp == '\"')
+                        help_string += '\"';
+                    else if(temp == '\'')
+                        help_string += '\'';
+                    else if(temp == '\\')
+                        help_string += '\\';
+                    p++;
+                }
+                else
+                    help_string += ch;
+            }
+            Variable new_constant = new Variable(res, help_string, true, false, 0);
             startcode.getStartCodeTable().variables.add(new_constant);
             Order push = new Order("push", level);
             push.addOper((long) len);
