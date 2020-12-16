@@ -52,25 +52,38 @@ public class Analyser {
     }
 
     // binary_operator -> '+' | '-'
-    // operator_expr -> multiplicative_expr [binary_operator operator_expr]
+    // operator_expr -> multiplicative_expr (binary_operator multiplicative_expr)*
     public operator_exprAst operator_expr_analyse() {
         multiplicative_exprAst multiplicative_expr;
         Token binary_operator;
-        operator_exprAst operator_expr;
+        ArrayList<String> oper = new ArrayList<>();
+        ArrayList<multiplicative_exprAst> operator_expr = new ArrayList<>();
         multiplicative_expr = multiplicative_expr_analyse();
         binary_operator = nextToken();
-        String oper;
         if (binary_operator.getType() == Token.tokentype.PLUS)
-            oper = "+";
+            oper.add("+");
         else if (binary_operator.getType() == Token.tokentype.MINUS)
-            oper = "-";
+            oper.add("-");
         else {
             unreadToken();
             return new operator_exprAst(multiplicative_expr);
         }
-        operator_expr = operator_expr_analyse();
-        if (operator_expr == null)
-            System.exit(1);
+        while(true){
+            multiplicative_exprAst temp;
+            temp = multiplicative_expr_analyse();
+            if(temp == null)
+                System.exit(1);
+            operator_expr.add(temp);
+            binary_operator = nextToken();
+            if (binary_operator.getType() == Token.tokentype.PLUS)
+                oper.add("+");
+            else if (binary_operator.getType() == Token.tokentype.MINUS)
+                oper.add("-");
+            else{
+                unreadToken();
+                break;
+            }
+        }
         return new operator_exprAst(multiplicative_expr, oper, operator_expr);
     }
 
@@ -118,27 +131,38 @@ public class Analyser {
 
     // multiplicative_operator -> '*' | '/'
     // multiplicative_expr ->
-    // as_expr [multiplicative_operator multiplicative_expr]
+    // as_expr （multiplicative_operator as_expr）*
     public multiplicative_exprAst multiplicative_expr_analyse() {
         as_exprAst as_expr;
         Token multiplicative_operator;
-        multiplicative_exprAst multiplicative_expr;
+        ArrayList<String> oper = new ArrayList<>();
+        ArrayList<as_exprAst> multiplicative_expr = new ArrayList<>();
         as_expr = as_expr_analyse();
         if (as_expr == null)
             return null;
         multiplicative_operator = nextToken();
-        String oper;
+
         if (multiplicative_operator.getType() == Token.tokentype.MUL)
-            oper = "*";
+            oper.add("*");
         else if (multiplicative_operator.getType() == Token.tokentype.DIV)
-            oper = "/";
+            oper.add("/");
         else {
             unreadToken();
             return new multiplicative_exprAst(as_expr);
         }
-        multiplicative_expr = multiplicative_expr_analyse();
-        if (multiplicative_expr == null)
-            System.exit(1);
+        while(true){
+            multiplicative_exprAst temp = multiplicative_expr_analyse();
+            if (temp == null)
+                System.exit(1);
+            if (multiplicative_operator.getType() == Token.tokentype.MUL)
+                oper.add("*");
+            else if (multiplicative_operator.getType() == Token.tokentype.DIV)
+                oper.add("/");
+            else {
+                unreadToken();
+                break;
+            }
+        }
         return new multiplicative_exprAst(as_expr, oper, multiplicative_expr);
     }
 

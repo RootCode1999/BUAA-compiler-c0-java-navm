@@ -7,8 +7,9 @@ public class Function {
     int param_slots = 0;
     String name;
     String type;
-    public ArrayList<Order> orders = new ArrayList<>();
-    public ArrayList<Variable> variables = new ArrayList<>();
+    public ArrayList<Order> orders = new ArrayList<Order>();
+    public ArrayList<Variable> variables = new ArrayList<Variable>();
+    public ArrayList<Variable> parameters = new ArrayList<Variable>();
 
     public Function(String name, String type) {
         this.name = name;
@@ -54,6 +55,13 @@ public class Function {
         return false;
     }
 
+    public boolean is_parameters(String name) {
+        for (int i = 0; i < parameters.size(); i++)
+            if (parameters.get(i).name.equals(name))
+                return true;
+        return false;
+    }
+
     public String get_type() {
         return this.type;
     }
@@ -67,6 +75,15 @@ public class Function {
         return null;
     }
 
+    public Variable get_parameter(String name) {
+        int len = parameters.size();
+        for (int i = len - 1; i >= 0; i--) {
+            if (parameters.get(i).name.equals(name))
+                return parameters.get(i);
+        }
+        return null;
+    }
+
     public boolean is_const(String name, int level) {
         int len = variables.size();
         for (int i = len - 1; i >= 0; i--) {
@@ -76,13 +93,31 @@ public class Function {
         return false;
     }
 
-    public int get_index(String name, int level) {
+    public int get_index_variables(String name, int level) {
         int len = variables.size();
         for (int i = len - 1; i >= 0; i--) {
             if (variables.get(i).name.equals(name) && variables.get(i).level <= level)
                 return i;
         }
         return -1;
+    }
+
+    public int get_index_parameter(String name) {
+        int len = parameters.size();
+        for (int i = len - 1; i >= 0; i--) {
+            if (parameters.get(i).name.equals(name))
+                return i+1;
+        }
+        return -1;
+    }
+
+    public boolean is_parameter_const(String name) {
+        int len = parameters.size();
+        for (int i = len - 1; i >= 0; i--) {
+            if (parameters.get(i).name.equals(name))
+                return parameters.get(i).is_const;
+        }
+        return false;
     }
 
     public int get_last_order_index() {

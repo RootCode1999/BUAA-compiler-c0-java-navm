@@ -46,7 +46,7 @@ public class startcode {
         int i=0;
         while(i<len) {
             if (variables.get(i).name.equals(name))
-                variables.get(i);
+                return variables.get(i);
             i++;
         }
         return null;

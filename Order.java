@@ -5,7 +5,7 @@ public class Order {
     int level;
     String opcode = "";
     String type = "";
-    ArrayList<Long> opers = new ArrayList<>();
+    public ArrayList<Long> opers = new ArrayList<>();
 
     public int getindex() {
         return this.index;
@@ -25,16 +25,8 @@ public class Order {
 
     public void setlevel(int level) { this.level = level; }
 
-    public String getOpers_string() {
-        String result = "";
-        int len = opers.size();
-        for (int i = 0; i < len; i++) {
-            result += opers.get(i);
-            if (i == opers.size() - 1)
-                break;
-            result += ", ";
-        }
-        return result;
+    public String getOpcode() {
+        return this.opcode;
     }
 
     public int get_level(){
@@ -62,4 +54,10 @@ public class Order {
     public Order(String opcode , int level) {
         this.opcode = opcode;
     }
+
+    public long last_oper(){
+        int len = opers.size();
+        return opers.get(len-1);
+    }
+
 }

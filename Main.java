@@ -5,7 +5,9 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         String filename = args[0];
-        //String filename = "test.txt";
+        String outfile = args[2];
+        // String filename = "src/test.txt";
+        // String outfile = "src/test.o0";
         // File directory = new File(filepath);
         // String filename = directory.getAbsolutePath();
         FileReader fp;
@@ -30,7 +32,10 @@ public class Main {
             Ast c0Program = analyser.program_analyse();
             programAst c0ProgramAst = (programAst) c0Program;
             String res = ((programAst) c0Program).generate(0);
-            System.out.print("hello");
+            // Sgenerator middle_o0 = new Sgenerator("src/s0.txt");
+            // middle_o0.generate();
+            Ogenerator write_o0 = new Ogenerator(outfile);
+            write_o0.generate();
         } catch (Exception e) {
             e.printStackTrace();
         }
