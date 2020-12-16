@@ -38,7 +38,7 @@ public class Main {
             write_o0.generate();
             System.out.print("hello");
         } catch (Exception e) {
-            e.printStackTrace();
+            System.exit(1);
         }
     }
 }
