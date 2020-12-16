@@ -50,9 +50,7 @@ public class Tokenizer {
                     current_state = DFA.INITIAL;
                 else if (Character.isISOControl(ch)) // Invisible
                     flag = false;
-                else if (Character.isDigit(ch) && ch == '0')// 0
-                    current_state = DFA.INITIAL;
-                else if (Character.isDigit(ch) && ch != '0')// 10
+                else if (Character.isDigit(ch))// 10
                     current_state = DFA.DECIMAL;
                 else if (Character.isAlphabetic(ch) || ch == '_')// alphabet
                     current_state = DFA.IDENTIFIER;
@@ -77,8 +75,6 @@ public class Tokenizer {
                         current_state = DFA.LESS;
                     else if (ch == '>')
                         current_state = DFA.GREATER;
-                    else if (ch == '=')
-                        current_state = DFA.ASSIGN;
                     else if (ch == '-')
                         current_state = DFA.MINUS_SIGN;
                     else if (ch == '/')
@@ -91,12 +87,15 @@ public class Tokenizer {
                         current_state = DFA.CHAR;
                     else if (ch == '\"')
                         current_state = DFA.STRING;
+                    else if (ch == '=')
+                        current_state = DFA.ASSIGN;
                     else
                         flag = false;
                 }
                 if (current_state != DFA.INITIAL) {
                     start_token_pos = previouspos();
-                    bf.append(ch);
+                    if(current_state != DFA.STRING)
+                        bf.append(ch);
                 }
                 if (flag == false) {
                     System.exit(1);
@@ -108,7 +107,6 @@ public class Tokenizer {
                 if (ch != '\"') {
                     bf.append(ch);
                 } else {
-                    unreadlast();
                     String tokenValue = bf.toString();
                     return Optional.of(new Token(Token.tokentype.STRING, bf.toString(), start_token_pos, currentpos()));
                 }

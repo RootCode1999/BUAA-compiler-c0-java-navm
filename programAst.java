@@ -508,6 +508,9 @@ class call_exprAst extends Ast {
         call.addOper((long) function_index);
         Functionarrary.getFunctionTable().getCurrentFuction().addorders(call);
 
+        Function this_func = Functionarrary.getFunctionTable().get_function(this.ident);
+        res = this_func.type;
+
         return res;
 
     }
@@ -572,7 +575,7 @@ class literal_exprAst extends Ast {
                 Functionarrary.getFunctionTable().getCurrentFuction().addorders(push);
             else
                 startcode.getStartCodeTable().orders.add(push);
-        } else if (res.equals("String")) {
+        } else if (res.equals("string")) {
             int len = startcode.getStartCodeTable().variables.size();
             Variable new_constant = new Variable(res, this.LITERAL, true, false, 0);
             startcode.getStartCodeTable().variables.add(new_constant);

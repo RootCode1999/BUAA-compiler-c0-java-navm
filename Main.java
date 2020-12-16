@@ -36,6 +36,7 @@ public class Main {
             // middle_o0.generate();
             Ogenerator write_o0 = new Ogenerator(outfile);
             write_o0.generate();
+            System.out.print("hello");
         } catch (Exception e) {
             e.printStackTrace();
         }

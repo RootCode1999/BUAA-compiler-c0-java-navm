@@ -37,8 +37,10 @@ public class Analyser {
     public assign_exprAst assign_expr_analyse() {
         Token tk1, tk2;
         tk1 = nextToken();
-        if (!is_variabale(tk1.getValue()))
+        if (!is_variabale(tk1.getValue())) {
+            System.out.println("assign_expr");
             System.exit(1);
+        }
         tk2 = nextToken();
         if (tk2.getType() != Token.tokentype.ASSIGN) {
             unreadToken();
@@ -47,7 +49,10 @@ public class Analyser {
         }
         operator_exprAst operator_expr = operator_expr_analyse();
         if (operator_expr == null)
+        {
+            System.out.println("assign_expr");
             System.exit(1);
+        }
         return new assign_exprAst(tk1.getValue(), operator_expr);
     }
 
@@ -71,8 +76,10 @@ public class Analyser {
         while(true){
             multiplicative_exprAst temp;
             temp = multiplicative_expr_analyse();
-            if(temp == null)
+            if(temp == null){
+                System.out.println("operator_expr");
                 System.exit(1);
+            }
             operator_expr.add(temp);
             binary_operator = nextToken();
             if (binary_operator.getType() == Token.tokentype.PLUS)
@@ -94,8 +101,10 @@ public class Analyser {
         operator_exprAst operator_exprl;
         Token relational_operator;
         Token tk = nextToken();
-        if(tk.getType() != Token.tokentype.L_PAREN)
+        if(tk.getType() != Token.tokentype.L_PAREN){
+            System.out.println("condition");
             System.exit(1);
+        }
         operator_exprl = operator_expr_analyse();
         if (operator_exprl == null)
             return null;
@@ -117,15 +126,20 @@ public class Analyser {
             return new conditionAst(operator_exprl);
         }
         else {
+            System.out.println("condition");
             System.exit(1);
         }
         operator_exprAst operator_exprr;
         operator_exprr = operator_expr_analyse();
-        if (operator_exprr == null)
+        if (operator_exprr == null){
+            System.out.println("condition");
             System.exit(1);
+        }
         tk = nextToken();
-        if(tk.getType() != Token.tokentype.R_PAREN)
+        if(tk.getType() != Token.tokentype.R_PAREN){
+            System.out.println("condition");
             System.exit(1);
+        }
         return new conditionAst(operator_exprl, oper, operator_exprr);
     }
 
@@ -240,7 +254,7 @@ public class Analyser {
                 System.exit(1);
             return new primary_exprAst(ident_expr);
         } else if (first.getType() == Token.tokentype.INT || first.getType() == Token.tokentype.DOUBLE
-                || first.getType() == Token.tokentype.CHAR || first.getType() == Token.tokentype.DOUBLE) {
+                || first.getType() == Token.tokentype.CHAR || first.getType() == Token.tokentype.STRING) {
             unreadToken();
             literal_expr = literal_expr_analyse();
             if (literal_expr == null)
@@ -293,7 +307,8 @@ public class Analyser {
                 || IDENT.equals("putchar")
                 || IDENT.equals("putdouble")
                 || IDENT.equals("putint")
-                || IDENT.equals("putln")){
+                || IDENT.equals("putln")
+                || IDENT.equals("putstr")){
             ;
         }
         else if (!is_function(IDENT))
@@ -718,7 +733,7 @@ public class Analyser {
         } else if (tk1.getType() == Token.tokentype.IDENT) {
             Token tk2 = nextToken();
             Token tk3 = nextToken();
-            if (tk2.getType() == Token.tokentype.SEMICOLON
+            if (tk2.getType() == Token.tokentype.COLON
                     && (tk3.getType() == Token.tokentype.INT || tk3.getType() == Token.tokentype.DOUBLE)) {
                 return new function_paramAst(tk1.getValue(), tk3.getValue());
             }
@@ -730,10 +745,11 @@ public class Analyser {
     // function_param_list -> function_param (',' function_param)*
     public function_param_listAst function_param_list_analyse() {
         ArrayList<function_paramAst> function_params = new ArrayList<function_paramAst>();
-        function_paramAst function_param1;
+        function_paramAst function_param1 = null;
         int flag = 0;
         while (true) {
-            function_param1 = function_param_analyse();
+            if(flag==0)
+                function_param1 = function_param_analyse();
             Token tk = nextToken();
             if (tk.getType() == Token.tokentype.R_PAREN && flag == 0) {
                 unreadToken();
@@ -781,6 +797,7 @@ public class Analyser {
                 function_param_listAst function_param_list = function_param_list_analyse();
                 if (function_param_list == null)
                     System.exit(1);
+                Token help = nextToken();
                 Token tk5 = nextToken();
                 Token tk6 = nextToken();
                 if (tk5.getType() == Token.tokentype.ARROW && (tk6.getType() == Token.tokentype.INT
@@ -821,6 +838,7 @@ public class Analyser {
     public programAst program_analyse() {
         ArrayList<itemAst> items = new ArrayList<itemAst>();
         Token tk = nextToken();
+        int i = 0;
         while (tk != null) {
             unreadToken();
             itemAst item;
@@ -830,6 +848,7 @@ public class Analyser {
             else
                 System.exit(1);
             tk = nextToken();
+            i++;
         }
         return new programAst(items);
     }
