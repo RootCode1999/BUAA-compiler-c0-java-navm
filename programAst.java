@@ -1253,13 +1253,13 @@ class functionAst extends Ast {
         if (!ty.equals("void"))
             this_func.set_return_slots(1);
         Functionarrary.getFunctionTable().functions.add(this_func);
-        if (function_param_list != null)
-            res = function_param_list.generate(level);
         if(!this.ty.equals("void")){
             Function current_func = Functionarrary.getFunctionTable().getCurrentFuction();
             Variable temp = new Variable(this.ty,"return",false,false,level);
             current_func.parameters.add(temp);
         }
+        if (function_param_list != null)
+            res = function_param_list.generate(level);
         res = block_stmt.generate(level);
         Variable func = new Variable(this.ty,this.ident,true,true,0);
         func.setfunc_true();
