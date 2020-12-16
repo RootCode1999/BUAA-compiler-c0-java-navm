@@ -1246,6 +1246,13 @@ class functionAst extends Ast {
         if (function_param_list != null)
             res = function_param_list.generate(level);
         res = block_stmt.generate(level);
+        if (res != this.ty) {
+            ArrayList<Order> fun_order = Functionarrary.getFunctionTable().getCurrentFuction().orders;
+            int len = fun_order.size();
+            for (int i = len - 1; i >= 0; i--) {
+
+            }
+        }
         Variable func = new Variable(this.ty, this.ident, true, true, 0);
         func.setfunc_true();
         startcode.getStartCodeTable().variables.add(func);
@@ -1258,6 +1265,10 @@ class functionAst extends Ast {
         }
         if (!res.equals(this.ty))
             System.exit(1);
+        if (len == 0) {
+            Order ret = new Order("ret", level);
+            Functionarrary.getFunctionTable().getCurrentFuction().orders.add(ret);
+        }
         res = this.ty;
         return res;
     }
