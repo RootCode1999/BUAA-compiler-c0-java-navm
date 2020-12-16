@@ -1,20 +1,23 @@
 fn main() -> void {
-    let counter: int = 10;
-    while counter > 0 {
-        counter = counter - 1;
-        if counter == 8 {
-            counter = 4;
-            continue;
-        }
-        if counter == 0 {
-            break;
-        }
-        while 1 {
-            if counter > 0 {
-                putint(counter);
+    let i: int = 1;
+    putint(i);
+    putln();
+    i = i + 1;
+    {
+        i = i + 1;
+        putint(i);
+        putln();
+        {
+            let i: int = 999;
+            putint(i);
+            putln();
+            i = i + 1;
+            {
+                putint(i);
                 putln();
-                break;
             }
         }
+        putint(i);
+        putln();
     }
 }

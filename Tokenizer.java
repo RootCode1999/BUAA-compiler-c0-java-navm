@@ -141,11 +141,11 @@ public class Tokenizer {
                     type = Token.tokentype.DOUBLE;
                 }
                 else {
-                    if(Character.isAlphabetic(ch))
+                    if(Character.isLetter(ch))
                         System.exit(1);
                     unreadlast();
                     String tokenvalue = bf.toString();
-                    if (tokenvalue.length() >= max_int.length() || tokenvalue.compareTo(max_int) > 0) {
+                    if (tokenvalue.length() >= max_int.length() && tokenvalue.compareTo(max_int) > 0) {
                         System.exit(1);
                     }
                     return Optional.of(new Token(type, bf.toString(), start_token_pos, currentpos()));
