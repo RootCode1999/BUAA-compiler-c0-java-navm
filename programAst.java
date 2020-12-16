@@ -164,8 +164,6 @@ class conditionAst extends Ast {
         String res3 = "void";
         res2 = expr_front.generate(level);
         if (expr_back == null) {
-            Order setgt = new Order("set.gt", level);
-            Functionarrary.getFunctionTable().getCurrentFuction().addorders(setgt);
             return "boolean";
         }
         res3 = expr_back.generate(level);

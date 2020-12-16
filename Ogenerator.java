@@ -263,6 +263,8 @@ public class Ogenerator {
                 if(this_func.type.equals("int") || this_func.type.equals("double"))
                     return_slots = 1;
                 int param_slots = this_func.parameters.size();
+                if((this_func.parameters.size()>0 && this_func.parameters.get(0).name.equals("return")))
+                    param_slots -= 1;
                 int loc_slots = this_func.variables.size();
                 int count = this_func.orders.size();
 

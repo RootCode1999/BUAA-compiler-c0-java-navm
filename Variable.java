@@ -1,6 +1,6 @@
 public class Variable {
     String type;
-    String name;
+    public String name;
     String functionname;
     int level;
     boolean is_const;

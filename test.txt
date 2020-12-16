@@ -1,22 +1,32 @@
-fn move(level: int, a: int, c: int) -> void {
-    putint(level);
-    putchar(32);
-    putchar(a);
-    putchar(32);
-    putchar(c);
-    putln();
+fn is_odd(x: int) -> int {
+    return (x / 2 * 2) - x;
 }
 
-fn hanoi(level: int, a: int, b: int, c: int) -> void {
-    if level == 1 {
-        move(level, a, c);
-    } else {
-        hanoi(level-1, a, c, b);
-        move(level, a, c);
-        hanoi(level-1, b, a, c);
+fn fastpow(base: int, exp: int) -> int {
+    let res: int = 1;
+    if exp < 0 {
+        return 0;
     }
+    while exp > 0 {
+        if is_odd(exp) {
+            res = res * base;
+        }
+        base = base * base;
+        exp = exp / 2;
+    }
+    return res;
 }
 
 fn main() -> void {
-    hanoi(6, 65, 66, 67);
+    let base: int;
+    let exp: int;
+    let count: int;
+    count = getint();
+    while count > 0 {
+        base = getint();
+        exp = getint();
+        putint(fastpow(base,exp));
+        putln();
+        count = count - 1;
+    }
 }

@@ -1,100 +1,127 @@
 .globals:
-0    static: "putint"
-1    static: "putchar"
-2    static: "putchar"
-3    static: "putchar"
-4    static: "putchar"
-5    static: "putln"
-6    static: "move"
-7    static: "hanoi"
-8    static: "main"
-9    static: "_start"
+0    static: "is_odd"
+1    static: "fastpow"
+2    static: "getint"
+3    static: "getint"
+4    static: "getint"
+5    static: "putint"
+6    static: "putln"
+7    static: "main"
+8    static: "_start"
 
 .start:
 0    stackalloc 0  
 1    call 3  
 
-1    .functions:move
-0    stackalloc(0)
-1    arga(0)
-2    load.64 
-3    callname(0)
-4    stackalloc(0)
-5    push(32)
-6    callname(1)
-7    stackalloc(0)
-8    arga(1)
-9    load.64 
-10   callname(2)
-11   stackalloc(0)
-12   push(32)
-13   callname(3)
-14   stackalloc(0)
-15   arga(2)
-16   load.64 
-17   callname(4)
-18   stackalloc(0)
-19   callname(5)
-20   ret 
-
-2    .functions:hanoi
+1    .functions:is_odd
 0    arga(0)
-1    load.64 
-2    push(1)
-3    cmp.i 
-4    not 
-5    br.true(1)
-6    br(9)
-7    stackalloc(0)
-8    arga(0)
-9    load.64 
-10   arga(1)
-11   load.64 
-12   arga(3)
-13   load.64 
-14   call(1)
-15   br(33)
-16   stackalloc(0)
-17   arga(0)
-18   load.64 
-19   push(1)
-20   sub.i 
-21   arga(1)
-22   load.64 
-23   arga(3)
-24   load.64 
-25   arga(2)
-26   load.64 
-27   call(2)
-28   stackalloc(0)
-29   arga(0)
-30   load.64 
-31   arga(1)
-32   load.64 
-33   arga(3)
-34   load.64 
-35   call(1)
-36   stackalloc(0)
-37   arga(0)
-38   load.64 
-39   push(1)
-40   sub.i 
-41   arga(2)
-42   load.64 
-43   arga(1)
-44   load.64 
-45   arga(3)
+1    arga(1)
+2    load.64 
+3    push(2)
+4    div.i 
+5    push(2)
+6    mul.i 
+7    arga(1)
+8    load.64 
+9    sub.i 
+10   store.64 
+11   ret 
+
+2    .functions:fastpow
+0    loca(0)
+1    push(1)
+2    store.64 
+3    arga(2)
+4    load.64 
+5    push(0)
+6    cmp.i 
+7    set.lt 
+8    br.true(1)
+9    br(5)
+10   arga(0)
+11   push(0)
+12   store.64 
+13   ret 
+14   br(0)
+15   br(0)
+16   arga(2)
+17   load.64 
+18   push(0)
+19   cmp.i 
+20   set.gt 
+21   br.true(1)
+22   br(28)
+23   stackalloc(1)
+24   arga(2)
+25   load.64 
+26   call(1)
+27   br.true(1)
+28   br(8)
+29   loca(0)
+30   loca(0)
+31   load.64 
+32   arga(1)
+33   load.64 
+34   mul.i 
+35   store.64 
+36   br(0)
+37   arga(1)
+38   arga(1)
+39   load.64 
+40   arga(1)
+41   load.64 
+42   mul.i 
+43   store.64 
+44   arga(2)
+45   arga(2)
 46   load.64 
-47   call(2)
-48   br(0)
-49   ret 
+47   push(2)
+48   div.i 
+49   store.64 
+50   br(-35)
+51   arga(0)
+52   loca(0)
+53   load.64 
+54   store.64 
+55   ret 
 
 3    .functions:main
-0    stackalloc(0)
-1    push(6)
-2    push(65)
-3    push(66)
-4    push(67)
-5    call(2)
-6    ret 
+0    loca(2)
+1    stackalloc(1)
+2    callname(2)
+3    store.64 
+4    br(0)
+5    loca(2)
+6    load.64 
+7    push(0)
+8    cmp.i 
+9    set.gt 
+10   br.true(1)
+11   br(25)
+12   loca(0)
+13   stackalloc(1)
+14   callname(3)
+15   store.64 
+16   loca(1)
+17   stackalloc(1)
+18   callname(4)
+19   store.64 
+20   stackalloc(0)
+21   stackalloc(1)
+22   loca(0)
+23   load.64 
+24   loca(1)
+25   load.64 
+26   call(2)
+27   callname(5)
+28   stackalloc(0)
+29   callname(6)
+30   loca(2)
+31   loca(2)
+32   load.64 
+33   push(1)
+34   sub.i 
+35   store.64 
+36   br(-32)
+37   ret 
 
