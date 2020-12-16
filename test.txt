@@ -1,57 +1,20 @@
-fn itoch(i: int) -> int {
-    if i < 10 {
-        return '0' + i;
-    } else {
-        return 'a' + i - 10;
-    }
-}
-
-fn modulo(a: int, b: int) -> int {
-    return a - a/b*b;
-}
-
-fn div_modulo(x: int, div_cnt: int, rhs: int) -> int {
-    while div_cnt > 0 {
-        x = x / rhs;
-        div_cnt = div_cnt - 1;
-    }
-    return modulo(x, rhs);
-}
-
-fn itoa(i: int, const radix: int) -> void {
-    let char_count: int = 0;
-    let ij: int;
-    if i < 0 {
-        i = -i;
-        putchar('-');
-    }
-
-    ij = i;
-    if ij == 0 {
-        char_count = 1;
-    } else {
-        while ij > 0 {
-            ij = ij / radix;
-            char_count = char_count + 1;
-        }
-    }
-
-    while char_count > 0 {
-        char_count = char_count - 1;
-        putchar(itoch(div_modulo(i, char_count, radix)));
-    }
-}
-
 fn main() -> void {
-    let count: int;
-    let radix: int;
-    let number: int;
-    count = getint();
-    while count > 0 {
-        number = getint();
-        radix = getint();
-        itoa(number, radix);
-        putln();
-        count = count - 1;
+    let counter: int = 10;
+    while counter > 0 {
+        counter = counter - 1;
+        if counter == 8 {
+            counter = 4;
+            continue;
+        }
+        if counter == 0 {
+            break;
+        }
+        while 1 {
+            if counter > 0 {
+                putint(counter);
+                putln();
+                break;
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@ public class Function {
     int nameindex;
     int return_slots = 0;
     int param_slots = 0;
+    public int while_index = 0;
     String name;
     String type;
     public ArrayList<Order> orders = new ArrayList<Order>();

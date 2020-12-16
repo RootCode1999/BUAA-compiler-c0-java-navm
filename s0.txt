@@ -1,11 +1,72 @@
 .globals:
-0    static: "main"
-1    static: "_start"
+0    static: "putint"
+1    static: "putln"
+2    static: "main"
+3    static: "_start"
 
 .start:
 0    stackalloc 0  
 1    call 1  
 
 1    .functions:main
-0    ret 
+0    loca(0)
+1    push(10)
+2    store.64 
+3    br(0)
+4    loca(0)
+5    load.64 
+6    push(0)
+7    cmp.i 
+8    set.gt 
+9    br.true(1)
+10   br(48)
+11   loca(0)
+12   loca(0)
+13   load.64 
+14   push(1)
+15   sub.i 
+16   store.64 
+17   loca(0)
+18   load.64 
+19   push(8)
+20   cmp.i 
+21   not 
+22   br.true(1)
+23   br(5)
+24   loca(0)
+25   push(4)
+26   store.64 
+27   br(-24)
+28   br(0)
+29   loca(0)
+30   load.64 
+31   push(0)
+32   cmp.i 
+33   not 
+34   br.true(1)
+35   br(2)
+36   br(22)
+37   br(0)
+38   br(0)
+39   push(1)
+40   br.true(1)
+41   br(16)
+42   loca(0)
+43   load.64 
+44   push(0)
+45   cmp.i 
+46   set.gt 
+47   br.true(1)
+48   br(8)
+49   stackalloc(0)
+50   loca(0)
+51   load.64 
+52   callname(0)
+53   stackalloc(0)
+54   callname(1)
+55   br(2)
+56   br(0)
+57   br(-19)
+58   br(-55)
+59   ret 
 

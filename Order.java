@@ -5,6 +5,7 @@ public class Order {
     int level;
     String opcode = "";
     String type = "";
+    int while_index;
     public ArrayList<Long> opers = new ArrayList<>();
 
     public int getindex() {
@@ -38,6 +39,10 @@ public class Order {
         return opers.get(len-1);
     }
 
+    public String get_opcode(){
+        return this.opcode;
+    }
+
     public String get_type(){
         return this.type;
     }
@@ -53,6 +58,7 @@ public class Order {
 
     public Order(String opcode , int level) {
         this.opcode = opcode;
+        this.level = level;
     }
 
     public long last_oper(){
