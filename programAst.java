@@ -1120,17 +1120,17 @@ class return_stmtAst extends Ast {
 
     public String generate(int level) {
         String res = "void";
+        Function currentFunction = Functionarrary.getFunctionTable().getCurrentFuction();
         if (expr != null) {
             Order arga = new Order("arga", level);
             arga.addOper(0L);
-            Function currentFunction = Functionarrary.getFunctionTable().getCurrentFuction();
             currentFunction.addorders(arga);
             res = expr.generate(level);
             Order store = new Order("store.64", level);
             currentFunction.addorders(store);
-            Order ret = new Order("ret", level);
-            currentFunction.addorders(ret);
         }
+        Order ret = new Order("ret", level);
+        currentFunction.addorders(ret);
         return res;
     }
 }
