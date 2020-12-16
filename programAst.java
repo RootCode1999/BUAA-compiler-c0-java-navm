@@ -459,7 +459,10 @@ class call_exprAst extends Ast {
     public String generate(int level) {
         if (ident.equals("getint") || ident.equals("getdouble") || ident.equals("getchar") || ident.equals("putln")) {
             Order stackalloc = new Order("stackalloc", level);
-            stackalloc.addOper(0L);
+            if(ident.equals("putln"))
+                stackalloc.addOper(0L);
+            else
+                stackalloc.addOper(1L);
             Functionarrary.getFunctionTable().getCurrentFuction().addorders(stackalloc);
             int index = startcode.getStartCodeTable().variables.size();
             Variable this_var = new Variable("string", ident, true, true, 0);
