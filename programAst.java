@@ -804,7 +804,7 @@ class let_decl_stmtAst extends Ast {
                 if (!res.equals(res1))
                     System.exit(1);
                 Order store = new Order("store.64", level);
-                startcode.getStartCodeTable().variables.add(new_variable);
+                startcode.getStartCodeTable().orders.add(store);
             } else
                 System.exit(1);
         } else {
