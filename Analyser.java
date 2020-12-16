@@ -645,8 +645,10 @@ public class Analyser {
                 }
             }
         } else {
-            unreadToken();
-            unreadToken();
+            if(tk2 != null)
+                unreadToken();
+            if(tk3 != null)
+                unreadToken();
         }
         Token tk4 = nextToken();
         if (tk4.getType() == Token.tokentype.ELSE_KW) {
