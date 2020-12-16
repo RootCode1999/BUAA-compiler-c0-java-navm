@@ -197,6 +197,7 @@ public class Tokenizer {
                 char ch = currentChar.get();
                 if(ch == '/'){
                     while(true) {
+                        bf = new StringBuffer();
                         currentChar = nextChar();
                         ch = currentChar.get();
                         if(ch == '\n'){
@@ -206,7 +207,8 @@ public class Tokenizer {
                     }
                 }
                 unreadlast();
-                return Optional.of(new Token(Token.tokentype.DIV, "/", start_token_pos, currentpos()));
+                if(current_state != DFA.INITIAL)
+                    return Optional.of(new Token(Token.tokentype.DIV, "/", start_token_pos, currentpos()));
             }
 
             // =|==
