@@ -982,8 +982,6 @@ class if_stmtAst extends Ast {
                 for (int i = 0; i < len; i++) {
                     String temp = " ";
                     temp = process(level, condition_else_if.get(i), block_stmt_else_if.get(i));
-                    if (!temp.equals(res))
-                        System.exit(1);
                     res = temp;
                 }
         }
@@ -991,8 +989,6 @@ class if_stmtAst extends Ast {
         if (block_stmt_else != null) {
             String temp = " ";
             temp = process(level, null, block_stmt_else);
-            if (!temp.equals(res))
-                System.exit(1);
             res = temp;
         }
 

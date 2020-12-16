@@ -631,9 +631,11 @@ public class Analyser {
                 conditionAst condition_temp = condition_analyse();
                 if (condition_temp == null)
                     System.exit(1);
+                condition_else_if.add(condition_temp);
                 block_stmtAst block_temp = block_stmt_analyse();
                 if (block_temp == null)
                     System.exit(1);
+                block_stmt_else_if.add(block_temp);
                 tk2 = nextToken();
                 tk3 = nextToken();
                 if (!(tk2.getType() == Token.tokentype.ELSE_KW && tk3.getType() == Token.tokentype.IF_KW)) {
