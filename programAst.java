@@ -36,29 +36,27 @@ class assign_exprAst extends Ast {
             if (currentFunction.is_const(l_expr, level))
                 System.exit(1);
             int index = currentFunction.get_index_variables(l_expr, level);
-            if(index == -1)
+            if (index == -1)
                 System.exit(1);
             loadOrder = new Order("loca", level);
             loadOrder.addOper((long) index);
             Variable current_var = currentFunction.get_variable(l_expr, level);
-            if(current_var == null)
+            if (current_var == null)
                 System.exit(1);
             res1 = currentFunction.get_variable(l_expr, level).get_type();
-        }
-        else if(currentFunction.is_parameters(l_expr)){
+        } else if (currentFunction.is_parameters(l_expr)) {
             if (currentFunction.is_parameter_const(l_expr))
                 System.exit(1);
             int index = currentFunction.get_index_parameter(l_expr);
-            if(index == -1)
+            if (index == -1)
                 System.exit(1);
             loadOrder = new Order("arga", level);
             loadOrder.addOper((long) index);
             Variable current_var = currentFunction.get_variable(l_expr, level);
-            if(current_var == null)
+            if (current_var == null)
                 System.exit(1);
             res1 = currentFunction.get_parameter(l_expr).get_type();
-        }
-        else{
+        } else {
             if (!startcode.getStartCodeTable().is_variable(l_expr))
                 System.exit(1);
             if (startcode.getStartCodeTable().is_const(l_expr))
@@ -88,7 +86,7 @@ class operator_exprAst extends Ast {
     ArrayList<multiplicative_exprAst> operator_exprnR = new ArrayList<>();
 
     public operator_exprAst(multiplicative_exprAst multiplicativeExpressionL, ArrayList<String> additiveOperator,
-                            ArrayList<multiplicative_exprAst> operator_exprnR) {
+            ArrayList<multiplicative_exprAst> operator_exprnR) {
         this.multiplicativeExpressionL = multiplicativeExpressionL;
         this.additiveOperator = additiveOperator;
         this.operator_exprnR = operator_exprnR;
@@ -105,11 +103,10 @@ class operator_exprAst extends Ast {
 
         res2 = multiplicativeExpressionL.generate(level);
         int len = additiveOperator.size();
-        if(len == 0)
+        if (len == 0)
             return res2;
-        else{
-            for(int i=0;i<len;i++)
-            {
+        else {
+            for (int i = 0; i < len; i++) {
                 res3 = operator_exprnR.get(i).generate(level);
                 res1 = res2;
                 Order order = new Order();
@@ -131,7 +128,7 @@ class operator_exprAst extends Ast {
                     order.setlevel(level);
                 }
                 if (level == 0)// GLOBAL
-                        startcode.getStartCodeTable().orders.add(order);
+                    startcode.getStartCodeTable().orders.add(order);
                 else// LOCAL
                     Functionarrary.getFunctionTable().getCurrentFuction().addorders(order);
             }
@@ -268,7 +265,7 @@ class multiplicative_exprAst extends Ast {
     ArrayList<as_exprAst> unaryExpressionR = new ArrayList<>();
 
     public multiplicative_exprAst(as_exprAst unaryExpressionL, ArrayList<String> mulOperator,
-                                  ArrayList<as_exprAst> unaryExpressionR) {
+            ArrayList<as_exprAst> unaryExpressionR) {
         this.unaryExpressionL = unaryExpressionL;
         this.mulOperator = mulOperator;
         this.unaryExpressionR = unaryExpressionR;
@@ -283,9 +280,9 @@ class multiplicative_exprAst extends Ast {
 
         res1 = unaryExpressionL.generate(level);
         int len = mulOperator.size();
-        if(len == 0)
+        if (len == 0)
             return res1;
-        for(int i=0;i<len;i++){
+        for (int i = 0; i < len; i++) {
             res2 = unaryExpressionR.get(i).generate(level);
             res0 = res1;
             String mulop = mulOperator.get(i);
@@ -613,34 +610,32 @@ class ident_exprAst extends Ast {
         if (currentFunction.is_variable(this.ident)) {
             loadOrder = new Order("loca", level);
             int index = currentFunction.get_index_variables(this.ident, level);
-            if(index == -1)
+            if (index == -1)
                 System.exit(1);
             loadOrder.addOper((long) index);
             Variable current_var = currentFunction.get_variable(this.ident, level);
-            if(current_var == null)
+            if (current_var == null)
                 System.exit(1);
             res1 = currentFunction.get_variable(this.ident, level).get_type();
             res = res1;
-        }
-        else if(currentFunction.is_parameters(this.ident)){
+        } else if (currentFunction.is_parameters(this.ident)) {
             loadOrder = new Order("arga", level);
             int index = currentFunction.get_index_parameter(this.ident);
-            if(index == -1)
+            if (index == -1)
                 System.exit(1);
             loadOrder.addOper((long) index);
             Variable current_var = currentFunction.get_parameter(this.ident);
-            if(current_var == null)
+            if (current_var == null)
                 System.exit(1);
             res1 = current_var.get_type();
             res = res1;
-        }
-        else {
+        } else {
             if (!startcode.getStartCodeTable().is_variable(this.ident))
                 System.exit(1);
             loadOrder = new Order("globa", level);
             loadOrder.addOper((long) startcode.getStartCodeTable().get_index(ident));
             Variable current_var = startcode.getStartCodeTable().get_variable(this.ident);
-            if(current_var == null)
+            if (current_var == null)
                 System.exit(1);
             res1 = current_var.get_type();
             res = res1;
@@ -732,18 +727,15 @@ class expr_stmtAst extends Ast {
         this.expr = expr;
     }
 
-
     public String generate(int level) {
         String res = "void";
-        if(expr instanceof exprAst){
-            exprAst this_expr = (exprAst)expr;
+        if (expr instanceof exprAst) {
+            exprAst this_expr = (exprAst) expr;
             res = this_expr.generate(level);
-        }
-        else if(expr instanceof operator_exprAst){
-            operator_exprAst this_expr = (operator_exprAst)expr;
+        } else if (expr instanceof operator_exprAst) {
+            operator_exprAst this_expr = (operator_exprAst) expr;
             res = this_expr.generate(level);
-        }
-        else
+        } else
             System.exit(1);
         return res;
     }
@@ -779,13 +771,13 @@ class let_decl_stmtAst extends Ast {
             new_variable = new Variable(this.ty, this.ident, false, true, level);
             if (level > 0) {
                 Functionarrary.getFunctionTable().getCurrentFuction().variables.add(new_variable);
-            } else{
+            } else {
                 startcode.getStartCodeTable().variables.add(new_variable);
             }
             if (level > 0) {
                 Function currentFunction = Functionarrary.getFunctionTable().getCurrentFuction();
                 int index = currentFunction.get_index_variables(this.ident, level);
-                if(index == -1)
+                if (index == -1)
                     System.exit(1);
                 Order loca = new Order("loca", level);
                 loca.addOper((long) index);
@@ -841,7 +833,7 @@ class const_decl_stmtAst extends Ast {
             Functionarrary.getFunctionTable().getCurrentFuction().variables.add(new_variable);
             Function currentFunction = Functionarrary.getFunctionTable().getCurrentFuction();
             int index = currentFunction.get_index_variables(this.ty, level);
-            if(index == -1)
+            if (index == -1)
                 System.exit(1);
             Order loca = new Order("loca", level);
             loca.addOper((long) index);
@@ -896,8 +888,8 @@ class decl_stmtAst extends Ast {
 class if_stmtAst extends Ast {
     conditionAst condition_if;
     block_stmtAst block_stmt_if;
-    ArrayList<conditionAst> condition_else_if;
-    ArrayList<block_stmtAst> block_stmt_else_if;
+    ArrayList<conditionAst> condition_else_if = new ArrayList<>();
+    ArrayList<block_stmtAst> block_stmt_else_if = new ArrayList<>();
     block_stmtAst block_stmt_else;
 
     ArrayList<Integer> start = new ArrayList<Integer>();
@@ -1212,7 +1204,7 @@ class functionAst extends Ast {
     public String generate(int level) {
         String res = "void";
         Function this_func = new Function(ident, ty);
-        constant con = new constant(this.ty,this.ident);
+        constant con = new constant(this.ty, this.ident);
         constantarray.getConstantTable().constants.add(con);
         if (!ty.equals("void"))
             this_func.set_return_slots(1);
@@ -1220,12 +1212,12 @@ class functionAst extends Ast {
         if (function_param_list != null)
             res = function_param_list.generate(level);
         res = block_stmt.generate(level);
-        Variable func = new Variable(this.ty,this.ident,true,true,0);
+        Variable func = new Variable(this.ty, this.ident, true, true, 0);
         func.setfunc_true();
         startcode.getStartCodeTable().variables.add(func);
-        Order ret = new Order("ret",level);
+        Order ret = new Order("ret", level);
         Functionarrary.getFunctionTable().getCurrentFuction().orders.add(ret);
-        if(!res.equals(this.ty))
+        if (!res.equals(this.ty))
             System.exit(1);
         res = this.ty;
         return res;
@@ -1265,10 +1257,10 @@ public class programAst extends Ast {
     }
 
     public String generate(int level) {
-        constant con = new constant("void","_start");
+        constant con = new constant("void", "_start");
         constantarray.getConstantTable().constants.add(con);
-        Variable start_var = new Variable("string","_start",true,true,0);
-        Function start_func = new Function("_start","void");
+        Variable start_var = new Variable("string", "_start", true, true, 0);
+        Function start_func = new Function("_start", "void");
         ArrayList<Function> funcs = Functionarrary.getFunctionTable().functions;
         funcs.add(start_func);
         String res;
@@ -1278,22 +1270,21 @@ public class programAst extends Ast {
         startcode.getStartCodeTable().variables.add(start_var);
         Function main_func = Functionarrary.getFunctionTable().get_function("main");
         int index = Functionarrary.getFunctionTable().get_index("main");
-        if(main_func.type.equals("void")){
-            Order stackAlloc = new Order("stackalloc",0);
+        if (main_func.type.equals("void")) {
+            Order stackAlloc = new Order("stackalloc", 0);
             stackAlloc.addOper(0L);
             startcode.getStartCodeTable().orders.add(stackAlloc);
-            Order call = new Order("call",0);
-            call.addOper((long)index);
+            Order call = new Order("call", 0);
+            call.addOper((long) index);
             startcode.getStartCodeTable().orders.add(call);
-        }
-        else{
-            Order stackAlloc = new Order("stackalloc",0);
+        } else {
+            Order stackAlloc = new Order("stackalloc", 0);
             stackAlloc.addOper(1L);
             startcode.getStartCodeTable().orders.add(stackAlloc);
-            Order call = new Order("call",0);
-            call.addOper((long)index);
+            Order call = new Order("call", 0);
+            call.addOper((long) index);
             startcode.getStartCodeTable().orders.add(call);
-            Order popn = new Order("popn",0);
+            Order popn = new Order("popn", 0);
             popn.addOper(1L);
             startcode.getStartCodeTable().orders.add(popn);
         }
