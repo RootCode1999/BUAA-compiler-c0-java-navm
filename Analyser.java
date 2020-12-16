@@ -13,13 +13,13 @@ public class Analyser {
     public ArrayList<Token.tokentype> tokentypes = new ArrayList<>();
 
     // expr ->
-    //   assign_expr
+    // assign_expr
     public exprAst expr_analyse() {
         assign_exprAst expr;
         operator_exprAst operator;
         Token tk1 = nextToken();
         Token tk2 = nextToken();
-        if(tk2.getType() == Token.tokentype.ASSIGN){
+        if (tk2.getType() == Token.tokentype.ASSIGN) {
             unreadToken();
             unreadToken();
             expr = assign_expr_analyse();
@@ -48,8 +48,7 @@ public class Analyser {
             return null;
         }
         operator_exprAst operator_expr = operator_expr_analyse();
-        if (operator_expr == null)
-        {
+        if (operator_expr == null) {
             System.out.println("assign_expr");
             System.exit(1);
         }
@@ -73,10 +72,10 @@ public class Analyser {
             unreadToken();
             return new operator_exprAst(multiplicative_expr);
         }
-        while(true){
+        while (true) {
             multiplicative_exprAst temp;
             temp = multiplicative_expr_analyse();
-            if(temp == null){
+            if (temp == null) {
                 System.out.println("operator_expr");
                 System.exit(1);
             }
@@ -86,7 +85,7 @@ public class Analyser {
                 oper.add("+");
             else if (binary_operator.getType() == Token.tokentype.MINUS)
                 oper.add("-");
-            else{
+            else {
                 unreadToken();
                 break;
             }
@@ -101,7 +100,7 @@ public class Analyser {
         operator_exprAst operator_exprl;
         Token relational_operator;
         Token tk = nextToken();
-        if(tk.getType() != Token.tokentype.L_PAREN){
+        if (tk.getType() != Token.tokentype.L_PAREN) {
             System.out.println("condition");
             System.exit(1);
         }
@@ -109,7 +108,7 @@ public class Analyser {
         if (operator_exprl == null)
             return null;
         relational_operator = nextToken();
-        String oper="";
+        String oper = "";
         if (relational_operator.getType() == Token.tokentype.EQ)
             oper = "==";
         else if (relational_operator.getType() == Token.tokentype.NEQ)
@@ -122,21 +121,20 @@ public class Analyser {
             oper = "<=";
         else if (relational_operator.getType() == Token.tokentype.GE)
             oper = ">=";
-        else if (relational_operator.getType() == Token.tokentype.R_PAREN){
+        else if (relational_operator.getType() == Token.tokentype.R_PAREN) {
             return new conditionAst(operator_exprl);
-        }
-        else {
+        } else {
             System.out.println("condition");
             System.exit(1);
         }
         operator_exprAst operator_exprr;
         operator_exprr = operator_expr_analyse();
-        if (operator_exprr == null){
+        if (operator_exprr == null) {
             System.out.println("condition");
             System.exit(1);
         }
         tk = nextToken();
-        if(tk.getType() != Token.tokentype.R_PAREN){
+        if (tk.getType() != Token.tokentype.R_PAREN) {
             System.out.println("condition");
             System.exit(1);
         }
@@ -164,7 +162,7 @@ public class Analyser {
             unreadToken();
             return new multiplicative_exprAst(as_expr);
         }
-        while(true){
+        while (true) {
             multiplicative_exprAst temp = multiplicative_expr_analyse();
             if (temp == null)
                 System.exit(1);
@@ -301,18 +299,12 @@ public class Analyser {
         call_param_listAst call_param_list;
         ident = nextToken();
         String IDENT = ident.getValue();
-        if(  IDENT.equals("getint")
-                || IDENT.equals("getdouble")
-                || IDENT.equals("getchar")
-                || IDENT.equals("putchar")
-                || IDENT.equals("putdouble")
-                || IDENT.equals("putint")
-                || IDENT.equals("putln")
-                || IDENT.equals("putstr")){
+        if (IDENT.equals("getint") || IDENT.equals("getdouble") || IDENT.equals("getchar") || IDENT.equals("putchar")
+                || IDENT.equals("putdouble") || IDENT.equals("putint") || IDENT.equals("putln")
+                || IDENT.equals("putstr")) {
             ;
-        }
-        else if (!is_function(IDENT))
-                System.exit(1);
+        } else if (!is_function(IDENT))
+            System.exit(1);
         ident = nextToken();
         if (ident.getType() != Token.tokentype.L_PAREN) {
             unreadToken();
@@ -320,6 +312,8 @@ public class Analyser {
             System.exit(1);
         }
         ident = nextToken();
+        if (ident == null)
+            System.exit(1);
         if (ident.getType() == Token.tokentype.R_PAREN) {
             return new call_exprAst(IDENT);
         } else {
@@ -390,7 +384,7 @@ public class Analyser {
         break_stmtAst break_stmt;
         continue_stmtAst continue_stmt;
         Token tk = nextToken();
-        if(tk==null)
+        if (tk == null)
             System.exit(1);
         if (tk.getType() == Token.tokentype.R_BRACE) {
             unreadToken();
@@ -457,8 +451,7 @@ public class Analyser {
     public expr_stmtAst expr_stmt_analyse() {
         Token tk1 = nextToken();
         Token tk2 = nextToken();
-        if( tk1.getType() == Token.tokentype.IDENT &&
-            tk2.getType() == Token.tokentype.ASSIGN){
+        if (tk1.getType() == Token.tokentype.IDENT && tk2.getType() == Token.tokentype.ASSIGN) {
             unreadToken();
             unreadToken();
             exprAst expr;
@@ -470,8 +463,7 @@ public class Analyser {
             if (tk.getType() != Token.tokentype.SEMICOLON)
                 System.exit(1);
             return new expr_stmtAst(expr);
-        }
-        else{
+        } else {
             unreadToken();
             unreadToken();
             operator_exprAst expr;
@@ -677,7 +669,7 @@ public class Analyser {
         unreadToken();
         operator_exprAst expr_stmt = operator_expr_analyse();
         tk = nextToken();
-        if(tk.getType() != Token.tokentype.SEMICOLON)
+        if (tk.getType() != Token.tokentype.SEMICOLON)
             System.exit(1);
         return new return_stmtAst(expr_stmt);
     }
@@ -748,7 +740,7 @@ public class Analyser {
         function_paramAst function_param1 = null;
         int flag = 0;
         while (true) {
-            if(flag==0)
+            if (flag == 0)
                 function_param1 = function_param_analyse();
             Token tk = nextToken();
             if (tk.getType() == Token.tokentype.R_PAREN && flag == 0) {
@@ -777,7 +769,7 @@ public class Analyser {
         Token tk3 = nextToken();
         if (tk1.getType() == Token.tokentype.FN_KW && tk2.getType() == Token.tokentype.IDENT
                 && tk3.getType() == Token.tokentype.L_PAREN) {
-            if(is_function(tk2.getValue()))
+            if (is_function(tk2.getValue()))
                 System.exit(1);
             Token tk4 = nextToken();
             if (tk4.getType() == Token.tokentype.R_PAREN) {
@@ -785,7 +777,7 @@ public class Analyser {
                 Token tk6 = nextToken();
                 if (tk5.getType() == Token.tokentype.ARROW && (tk6.getType() == Token.tokentype.INT
                         || tk6.getType() == Token.tokentype.DOUBLE || tk6.getType() == Token.tokentype.VOID)) {
-                    varia func = new varia(tk2.getValue(),tk6.getValue(),true);
+                    varia func = new varia(tk2.getValue(), tk6.getValue(), true);
                     this.function_arry.add(func);
                     block_stmtAst block_stmt = block_stmt_analyse();
                     if (block_stmt == null)
@@ -802,7 +794,7 @@ public class Analyser {
                 Token tk6 = nextToken();
                 if (tk5.getType() == Token.tokentype.ARROW && (tk6.getType() == Token.tokentype.INT
                         || tk6.getType() == Token.tokentype.DOUBLE || tk6.getType() == Token.tokentype.VOID)) {
-                    varia func = new varia(tk2.getValue(),tk5.getValue(),true);
+                    varia func = new varia(tk2.getValue(), tk5.getValue(), true);
                     this.function_arry.add(func);
                     block_stmtAst block_stmt = block_stmt_analyse();
                     if (block_stmt == null)
@@ -872,14 +864,14 @@ public class Analyser {
             for (int i = localVariable_arry.size() - 1; i >= 0; i--) {
                 varia this_one = localVariable_arry.get(i);
                 if (this_one.name.equals(name))
-                    if(!this_one.is_const)
+                    if (!this_one.is_const)
                         return true;
             }
         }
         for (int i = 0; i < globalVariable_arry.size(); i++) {
             varia this_one = globalVariable_arry.get(i);
             if (this_one.name.equals(name))
-                if(!this_one.is_const)
+                if (!this_one.is_const)
                     return true;
         }
 
@@ -887,7 +879,7 @@ public class Analyser {
     }
 
     public boolean is_function(String name) {
-        if(function_arry.size() == 0)
+        if (function_arry.size() == 0)
             return false;
         for (int i = function_arry.size() - 1; i >= 0; i--) {
             varia this_one = function_arry.get(i);
