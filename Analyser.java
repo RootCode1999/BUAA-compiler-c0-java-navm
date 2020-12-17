@@ -215,24 +215,28 @@ public class Analyser {
     // as_expr -> primary_expr {'as' ty}
     public as_exprAst as_expr_analyse() {
         primary_exprAst primary_expr;
-        Token as_kw;
-        Token ty;
+        ArrayList<Token> as_kws=new ArrayList<>();
+        ArrayList<String> tys=new ArrayList<>();
         primary_expr = primary_expr_analyse();
         if (primary_expr == null)
             return null;
-        as_kw = nextToken();
+        Token as_kw = nextToken();
         if (as_kw.getType() != Token.tokentype.AS_KW) {
             unreadToken();
             return new as_exprAst(primary_expr);
         }
-        ty = nextToken();
-        if (ty.getType() == Token.tokentype.INT) {
-            return new as_exprAst(primary_expr, "int");
-        } else if (ty.getType() == Token.tokentype.DOUBLE) {
-            return new as_exprAst(primary_expr, "double");
-        } else
-            System.exit(1);
-        return null;
+        while(as_kw.getType() == Token.tokentype.AS_KW){
+            Token ty = nextToken();
+            if (ty.getType() == Token.tokentype.INT) {
+                tys.add("int");
+            } else if (ty.getType() == Token.tokentype.DOUBLE) {
+                tys.add("double");
+            } else
+                System.exit(1);
+            as_kw = nextToken();
+        }
+        unreadToken();
+        return new as_exprAst(primary_expr, tys);
     }
 
     // primary_expr ->

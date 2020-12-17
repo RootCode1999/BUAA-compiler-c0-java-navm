@@ -119,10 +119,7 @@ public class Tokenizer {
                 if (ch != '\'') {
                     bf.append(ch);
                 } else {
-                    unreadlast();
-                    String tokenValue = bf.toString();
-                    if(tokenValue.length()!=1)
-                        System.exit(1);
+                    int len = bf.length();
                     return Optional.of(new Token(Token.tokentype.CHAR, bf.toString(), start_token_pos, currentpos()));
                 }
             }

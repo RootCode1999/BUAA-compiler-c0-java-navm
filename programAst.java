@@ -167,7 +167,9 @@ class conditionAst extends Ast {
             return "boolean";
         }
         res3 = expr_back.generate(level);
-        if (!res2.equals(res3))
+        if (!((res2.equals(res3)
+                || (res2.equals("int") && res3.equals("char")))
+            || (res2.equals("char") && res3.equals("int"))))
             System.exit(1);
         res1 = res2;
         ArrayList<Order> Calculation = new ArrayList<>();
@@ -315,9 +317,9 @@ class multiplicative_exprAst extends Ast {
 // as_expr -> primary_expr {'as' ty}
 class as_exprAst extends Ast {
     primary_exprAst l_expr;
-    String ty;
+    ArrayList<String> ty;
 
-    public as_exprAst(primary_exprAst l_expr, String ty) {
+    public as_exprAst(primary_exprAst l_expr, ArrayList<String> ty) {
         this.l_expr = l_expr;
         this.ty = ty;
     }
@@ -331,15 +333,17 @@ class as_exprAst extends Ast {
         res = l_expr.generate(level);
         if (ty == null)
             return res;
-        Order Change = new Order();
-        if (ty.equals("double"))
-            Change = new Order("itof", level);
-        else if (ty.equals("int"))
-            Change = new Order("ftoi", level);
-        else
-            System.exit(1);
-        Functionarrary.getFunctionTable().getCurrentFuction().addorders(Change);
-        return ty;
+        for(int i=0;i<ty.size();i++){
+            Order Change = new Order();
+            if (ty.get(i).equals("double"))
+                Change = new Order("itof", level);
+            else if (ty.get(i).equals("int"))
+                Change = new Order("ftoi", level);
+            else
+                System.exit(1);
+            Functionarrary.getFunctionTable().getCurrentFuction().addorders(Change);
+        }
+        return ty.get(ty.size()-1);
     }
 }
 
@@ -467,6 +471,7 @@ class call_exprAst extends Ast {
             startcode.getStartCodeTable().variables.add(this_var);
             Order call = new Order("callname", level);
             call.addOper((long) index);
+
             Functionarrary.getFunctionTable().getCurrentFuction().addorders(call);
             if (ident.equals("getint") || ident.equals("getchar"))
                 return "int";
@@ -528,11 +533,14 @@ class literal_exprAst extends Ast {
     public String judge() {
         String res = "void";
         int len = this.LITERAL.length();
-        if (len == 1 && Character.isAlphabetic(this.LITERAL.charAt(0))) {
+        if (len == 2 && this.LITERAL.charAt(0)=='\'') {
             res = "char";
             return res;
         }
-
+        if (len == 3 && this.LITERAL.charAt(0)=='\'' && this.LITERAL.charAt(1)=='\\') {
+            res = "char";
+            return res;
+        }
         if (len >= 1 && !Character.isDigit(this.LITERAL.charAt(0))) {
             res = "string";
             return res;
@@ -575,7 +583,29 @@ class literal_exprAst extends Ast {
                 startcode.getStartCodeTable().orders.add(push);
         } else if (res.equals("char")) {
             Order push = new Order("push", level);
-            char ch = this.LITERAL.charAt(0);
+            char ch ;
+            if(this.LITERAL.length()==2){
+                ch = this.LITERAL.charAt(1);
+            }
+            else {
+                ch = this.LITERAL.charAt(2);
+                if(ch == 'b')
+                    ch += '\b';
+                else if(ch == 'f')
+                    ch += '\f';
+                else if(ch == 'r')
+                    ch += '\r';
+                else if(ch == 'n')
+                    ch += '\n';
+                else if(ch == 't')
+                    ch += '\t';
+                else if(ch == '\"')
+                    ch += '\"';
+                else if(ch == '\'')
+                    ch += '\'';
+                else if(ch == '\\')
+                    ch += '\\';
+            }
             int value = Integer.valueOf(ch);
             push.addOper((long) value);
             if (level > 0)
@@ -620,6 +650,8 @@ class literal_exprAst extends Ast {
             else
                 startcode.getStartCodeTable().orders.add(push);
         }
+        if(res.equals("char"))
+            res="int";
         return res;
     }
 }
