@@ -597,21 +597,21 @@ class literal_exprAst extends Ast {
             else {
                 ch = this.LITERAL.charAt(2);
                 if(ch == 'b')
-                    ch += '\b';
+                    ch = '\b';
                 else if(ch == 'f')
-                    ch += '\f';
+                    ch = '\f';
                 else if(ch == 'r')
-                    ch += '\r';
+                    ch = '\r';
                 else if(ch == 'n')
-                    ch += '\n';
+                    ch = '\n';
                 else if(ch == 't')
-                    ch += '\t';
+                    ch = '\t';
                 else if(ch == '\"')
-                    ch += '\"';
+                    ch = '\"';
                 else if(ch == '\'')
-                    ch += '\'';
+                    ch = '\'';
                 else if(ch == '\\')
-                    ch += '\\';
+                    ch = '\\';
             }
             int value = Integer.valueOf(ch);
             push.addOper((long) value);
