@@ -768,13 +768,14 @@ public class Analyser {
             Token tk2 = nextToken();
             Token tk3 = nextToken();
             Token tk4 = nextToken();
-            if (tk2.getType() == Token.tokentype.IDENT && tk3.getType() == Token.tokentype.SEMICOLON
+            if (tk2.getType() == Token.tokentype.IDENT && tk3.getType() == Token.tokentype.COLON
                     && (tk4.getType() == Token.tokentype.INT || tk4.getType() == Token.tokentype.DOUBLE)) {
                 varia var_new = new varia(tk2.getValue(),tk4.getValue(),false);
                 function_var.add(var_new);
                 return new function_paramAst("const", tk2.getValue(), tk4.getValue());
             }
-        } else if (tk1.getType() == Token.tokentype.IDENT) {
+        }
+        else if (tk1.getType() == Token.tokentype.IDENT) {
             Token tk2 = nextToken();
             Token tk3 = nextToken();
             if (tk2.getType() == Token.tokentype.COLON

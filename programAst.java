@@ -460,19 +460,25 @@ class call_exprAst extends Ast {
 
     public String generate(int level) {
         if (ident.equals("getint") || ident.equals("getdouble") || ident.equals("getchar") || ident.equals("putln")) {
-            Order stackalloc = new Order("stackalloc", level);
-            if(ident.equals("putln"))
-                stackalloc.addOper(0L);
-            else
-                stackalloc.addOper(1L);
-            Functionarrary.getFunctionTable().getCurrentFuction().addorders(stackalloc);
-            int index = startcode.getStartCodeTable().variables.size();
-            Variable this_var = new Variable("string", ident, true, true, 0);
-            startcode.getStartCodeTable().variables.add(this_var);
-            Order call = new Order("callname", level);
-            call.addOper((long) index);
+            if(ident.equals("getchar")){
+                Order scanc = new Order("scan.c", level);
+                Functionarrary.getFunctionTable().getCurrentFuction().addorders(scanc);
+            }
+            else{
+                Order stackalloc = new Order("stackalloc", level);
+                if(ident.equals("putln"))
+                    stackalloc.addOper(0L);
+                else
+                    stackalloc.addOper(1L);
+                Functionarrary.getFunctionTable().getCurrentFuction().addorders(stackalloc);
+                int index = startcode.getStartCodeTable().variables.size();
+                Variable this_var = new Variable("string", ident, true, true, 0);
+                startcode.getStartCodeTable().variables.add(this_var);
+                Order call = new Order("callname", level);
+                call.addOper((long) index);
+                Functionarrary.getFunctionTable().getCurrentFuction().addorders(call);
+            }
 
-            Functionarrary.getFunctionTable().getCurrentFuction().addorders(call);
             if (ident.equals("getint") || ident.equals("getchar"))
                 return "int";
             if (ident.equals("getdouble"))
