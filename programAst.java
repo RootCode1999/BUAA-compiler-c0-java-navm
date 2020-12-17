@@ -857,7 +857,7 @@ class let_decl_stmtAst extends Ast {
                 Order store = new Order("store.64", level);
                 currentFunction.addorders(store);
             } else if (level == 0) {
-                int index = startcode.getStartCodeTable().get_index(this.ty);
+                int index = startcode.getStartCodeTable().get_index(this.ident);
                 Order globa = new Order("globa", level);
                 globa.addOper((long) index);
                 startcode.getStartCodeTable().orders.add(globa);
@@ -900,7 +900,7 @@ class const_decl_stmtAst extends Ast {
         if (level > 0) {
             Functionarrary.getFunctionTable().getCurrentFuction().variables.add(new_variable);
             Function currentFunction = Functionarrary.getFunctionTable().getCurrentFuction();
-            int index = currentFunction.get_index_variables(this.ty, level);
+            int index = currentFunction.get_index_variables(this.ident, level);
             if(index == -1)
                 System.exit(1);
             Order loca = new Order("loca", level);
@@ -913,7 +913,7 @@ class const_decl_stmtAst extends Ast {
             currentFunction.addorders(store);
         } else if (level == 0) {
             startcode.getStartCodeTable().variables.add(new_variable);
-            int index = startcode.getStartCodeTable().get_index(this.ty);
+            int index = startcode.getStartCodeTable().get_index(this.ident);
             Order globa = new Order("globa", level);
             globa.addOper((long) index);
             startcode.getStartCodeTable().orders.add(globa);
