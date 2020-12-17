@@ -480,7 +480,8 @@ class call_exprAst extends Ast {
             else
                 return "void";
         }
-        if (ident.equals("putchar") || ident.equals("putint") || ident.equals("putstr")) {
+        if (ident.equals("putchar") || ident.equals("putint")
+                || ident.equals("putstr") || ident.equals("putdouble")) {
             Order stackalloc = new Order("stackalloc", level);
             stackalloc.addOper(0L);
             Functionarrary.getFunctionTable().getCurrentFuction().addorders(stackalloc);
