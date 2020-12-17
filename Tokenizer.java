@@ -142,7 +142,7 @@ public class Tokenizer {
                         currentChar = nextChar();
                         currentChar = nextChar();
                         currentChar = nextChar();
-                        bf = new StringBuffer("0.0000001");
+                        bf = new StringBuffer("0.000001");
                     }
                     else if(Character.isLetter(ch))
                         System.exit(1);
