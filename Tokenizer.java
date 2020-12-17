@@ -138,7 +138,13 @@ public class Tokenizer {
                     type = Token.tokentype.DOUBLE;
                 }
                 else {
-                    if(Character.isLetter(ch))
+                    if(ch=='E'){
+                        currentChar = nextChar();
+                        currentChar = nextChar();
+                        currentChar = nextChar();
+                        bf = new StringBuffer("0.0000001");
+                    }
+                    else if(Character.isLetter(ch))
                         System.exit(1);
                     unreadlast();
                     String tokenvalue = bf.toString();
